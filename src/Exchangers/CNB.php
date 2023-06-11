@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace MiBo\Currency\Rates\Exchangers;
 
-use MiBo\Currencies\CurrencyInterface;
 use MiBo\Currency\Rates\Contracts\ExchangerInterface;
-use MiBo\Currency\Rates\Exceptions\CurrencyNotAvailableException;
 use MiBo\Currency\Rates\Exceptions\ExchangeRateNotAvailableException;
-use Psr\SimpleCache\CacheInterface;
+use MiBo\Currency\Rates\Traits\ExchangerHelper;
 
 /**
  * Class CNB
@@ -47,7 +45,7 @@ use Psr\SimpleCache\CacheInterface;
  * By agreement with the Ministry of Finance pursuant to the budgetary rules, the CNB conducts transactions
  * relating to government bond issues and financial market investments.
  *
- * @see https://www.cnb.cz/
+ * @link https://www.cnb.cz/
  *
  * @package MiBo\Currency\Rates\Exchangers
  *
@@ -59,6 +57,8 @@ use Psr\SimpleCache\CacheInterface;
  */
 class CNB implements ExchangerInterface
 {
+    use ExchangerHelper;
+
     // @phpcs:ignore
     protected const URL = "https://www.cnb.cz/cs/financni-trhy/devizovy-trh/kurzy-devizoveho-trhu/kurzy-devizoveho-trhu/denni_kurz.txt";
 
@@ -73,22 +73,15 @@ class CNB implements ExchangerInterface
     /**
      * @inheritDoc
      */
-    public function getRateFor(
-        CurrencyInterface|string $currency,
-        CurrencyInterface|string|null $fromCurrency = null
-    ): float
+    protected function getFor(array $rates, string $currency, string $fromCurrency): float
     {
-        $rates = $this->getExchangeRate();
+        $rate = ($rates[$currency]["amount"] ?? 1) / $rates[$currency]["rate"];
 
-        if (!in_array($currency, $rates)) {
-            throw new CurrencyNotAvailableException();
+        if ($fromCurrency === $this->getDefaultCurrencyCode()) {
+            return $rate;
         }
 
-        if ($fromCurrency !== null && !in_array($fromCurrency, $rates)) {
-            throw new CurrencyNotAvailableException();
-        }
-
-        $rate = $rates[$currency]["rate"] * ($rates[$currency]["amount"] ?? 1);
+        return $rate / (($rates[$fromCurrency]["amount"] ?? 1) * $rates[$fromCurrency]["rate"]);
     }
 
     /**
@@ -96,7 +89,7 @@ class CNB implements ExchangerInterface
      */
     public function getExchangeRate(): array
     {
-        $content = file_get_contents(self::URL);
+        $content = file_get_contents(static::URL);
 
         if ($content === false) {
             throw new ExchangeRateNotAvailableException();
@@ -119,20 +112,12 @@ class CNB implements ExchangerInterface
                 $rate,
             ] = explode("|", $line);
 
-            $rate[$code] = [
+            $rates[$code] = [
                 "amount" => (int) $amount,
                 "rate"   => (float) $rate,
             ];
         }
 
         return $rates;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getAvailableCurrencies(): array
-    {
-        return array_keys($this->getExchangeRate());
     }
 }
