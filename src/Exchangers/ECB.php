@@ -63,6 +63,8 @@ class ECB implements ExchangerInterface
 
     /**
      * @inheritDoc
+     *
+     * @param array<string, array{amount?: int, rate: float}> $rates
      */
     protected function getFor(array $rates, string $currency, string $fromCurrency): float
     {
@@ -109,7 +111,7 @@ class ECB implements ExchangerInterface
 
             /** @var object{value: string}|null $currency */
             /** @var object{value: string}|null $rate */
-            $rates[$currency?->value] = ["rate" => $rate?->value];
+            $rates[$currency?->value] = ["rate" => (float) $rate?->value];
         }
 
         return $rates;

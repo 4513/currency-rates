@@ -65,7 +65,7 @@ trait ExchangerHelper
             throw new CurrencyNotAvailableException();
         }
 
-        return $this->getFrom($rates, $currency, $fromCurrency ?? $this->getDefaultCurrencyCode());
+        return $this->getFor($rates, $currency, $fromCurrency ?? $this->getDefaultCurrencyCode());
     }
 
     /**
@@ -73,6 +73,6 @@ trait ExchangerHelper
      */
     public function getAvailableCurrencies(): array
     {
-        return array_keys($this->getExchangeRate()) + [$this->getDefaultCurrencyCode()];
+        return array_merge(array_keys($this->getExchangeRate()), [$this->getDefaultCurrencyCode()]);
     }
 }

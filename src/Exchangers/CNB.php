@@ -72,6 +72,8 @@ class CNB implements ExchangerInterface
 
     /**
      * @inheritDoc
+     *
+     * @param array<string, array{amount?: int, rate: float}> $rates
      */
     protected function getFor(array $rates, string $currency, string $fromCurrency): float
     {
@@ -104,17 +106,19 @@ class CNB implements ExchangerInterface
                 continue;
             }
 
-            [
-                $country,
-                $currency,
-                $amount,
-                $code,
-                $rate,
-            ] = explode("|", $line);
+            $fields = explode("|", $line);
+
+            if (count($fields) < 4) {
+                continue;
+            }
+
+            $amount = (int) $fields[2];
+            $rate   = (float) str_replace(",", ".", $fields[4]);
+            $code   = $fields[3];
 
             $rates[$code] = [
-                "amount" => (int) $amount,
-                "rate"   => (float) $rate,
+                "amount" => $amount,
+                "rate"   => $rate,
             ];
         }
 

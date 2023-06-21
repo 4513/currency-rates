@@ -13,6 +13,7 @@
         "Prices",
         "Price"
     ],
+    "license": "MIT",
     "authors": [
         {
             "name": "Michal Boris",
@@ -47,9 +48,6 @@
     },
     "config": {
         "platform-check": true,
-        "lock": false,
-        "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": false
-        }
+        "lock": false
     }
 }
