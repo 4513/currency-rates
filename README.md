@@ -6,7 +6,7 @@ The library comes with `\MiBo\Currency\Rates\ExchangerInterface` interface, whic
 * `getDefaultCurrency()` - returns default currency code of the Exchanger (e.g. USD)
 * `getRateFor()` - returns rate for the given currency code. Comparing the default currency of the Exchanger
   if no 'fromCurrency' parameter is provided.
-* `getExchangeRate()` - list of all exchange rates of the Exchanger. The result is an array where a key is a currency
+* `getExchangeRates()` - list of all exchange rates of the Exchanger. The result is an array where a key is a currency
   code and a value of 'rate' sub key is a rate for the given currency code. Comparing the default currency of the Exchanger.
   If 'amount' sub key is present, the rate is calculated for the given amount.
 * `getAvailableCurrencies()` - returns list of available currencies of the Exchanger. The result is an array of

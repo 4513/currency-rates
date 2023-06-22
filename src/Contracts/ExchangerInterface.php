@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace MiBo\Currency\Rates\Contracts;
 
 use MiBo\Currencies\CurrencyInterface;
-use Psr\SimpleCache\CacheInterface;
 
 /**
  * Interface ExchangerInterface
@@ -56,7 +55,7 @@ interface ExchangerInterface
      *
      * @return array<string, array{amount?: int, rate: float}> Exchange rate.
      */
-    public function getExchangeRate(): array;
+    public function getExchangeRates(): array;
 
     /**
      * Lists all available currencies for the Exchanger.

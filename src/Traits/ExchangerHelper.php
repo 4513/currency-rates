@@ -28,7 +28,7 @@ trait ExchangerHelper
     /**
      * @inheritDoc
      */
-    abstract public function getExchangeRate(): array;
+    abstract public function getExchangeRates(): array;
 
     /**
      * @param array<string, array{amount?: int, rate: float}> $rates
@@ -47,7 +47,7 @@ trait ExchangerHelper
         CurrencyInterface|string|null $fromCurrency = null
     ): float
     {
-        $rates        = $this->getExchangeRate();
+        $rates        = $this->getExchangeRates();
         $currency     = $currency instanceof CurrencyInterface ? $currency->getAlphabeticalCode() : $currency;
         $fromCurrency = $fromCurrency instanceof CurrencyInterface ?
             $fromCurrency->getAlphabeticalCode() :
@@ -73,6 +73,6 @@ trait ExchangerHelper
      */
     public function getAvailableCurrencies(): array
     {
-        return array_merge(array_keys($this->getExchangeRate()), [$this->getDefaultCurrencyCode()]);
+        return array_merge(array_keys($this->getExchangeRates()), [$this->getDefaultCurrencyCode()]);
     }
 }

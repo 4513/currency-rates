@@ -89,7 +89,7 @@ class CNB implements ExchangerInterface
     /**
      * @inheritDoc
      */
-    public function getExchangeRate(): array
+    public function getExchangeRates(): array
     {
         $content = file_get_contents(static::URL);
 

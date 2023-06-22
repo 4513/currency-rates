@@ -80,7 +80,7 @@ class ECB implements ExchangerInterface
     /**
      * @inheritDoc
      */
-    public function getExchangeRate(): array
+    public function getExchangeRates(): array
     {
         $rates     = [];
         $xmlReader = XMLReader::open(static::URL);
