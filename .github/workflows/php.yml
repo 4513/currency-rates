@@ -32,5 +32,5 @@ jobs:
       - name: PHP_CodeSniffer
         run: ./vendor/bin/phpcs
 
-      - name: CodeCov
+      - name: CodeCov 
         uses: codecov/codecov-action@v3
