@@ -24,7 +24,7 @@ class CNBTest extends ExchangerTestCase
     /**
      * @medium
      *
-     * @covers ::getExchangeRate
+     * @covers ::getExchangeRates
      * @covers ::getAvailableCurrencies
      * @covers ::getRateFor
      * @covers ::getFor
