@@ -1,5 +1,7 @@
 # Currency Rates
 
+[![codecov](https://codecov.io/gh/4513/currency-rates/branch/main/graph/badge.svg?token=kskaQT5wHR)](https://codecov.io/gh/4513/currency-rates)
+
 Online currency rate provider.  
 
 The library comes with `\MiBo\Currency\Rates\ExchangerInterface` interface, which provides the following methods:
