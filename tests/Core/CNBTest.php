@@ -22,7 +22,7 @@ use MiBo\Currency\Rates\Exchangers\CNB;
 class CNBTest extends ExchangerTestCase
 {
     /**
-     * @small
+     * @medium
      *
      * @covers ::getExchangeRate
      * @covers ::getAvailableCurrencies
