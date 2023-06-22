@@ -23,7 +23,7 @@ use MiBo\Currency\Rates\Exchangers\ECB;
 class ECBTest extends ExchangerTestCase
 {
     /**
-     * @small
+     * @medium
      *
      * @covers ::getExchangeRate
      * @covers ::getAvailableCurrencies
