@@ -19,7 +19,7 @@ use MiBo\Currency\Rates\Exchangers\CNB;
  *
  * @coversDefaultClass \MiBo\Currency\Rates\Exchangers\CNB
  */
-class CNBTest extends ExchangerTestCase
+final class CNBTest extends ExchangerTestCase
 {
     /**
      * @medium

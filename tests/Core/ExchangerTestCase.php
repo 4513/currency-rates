@@ -17,34 +17,27 @@ use PHPUnit\Framework\TestCase;
  *
  * @no-named-arguments Parameter names are not covered by the backward compatibility promise.
  */
-class ExchangerTestCase extends TestCase
+abstract class ExchangerTestCase extends TestCase
 {
     /**
-     * @param string[] $expected
-     * @param string[] $actual
+     * @param array<string> $expected
+     * @param array<string> $actual
      *
      * @return void
      */
     public static function assertAvailableCountries(array $expected, array $actual): void
     {
         foreach ($expected as $country) {
-            static::assertContains($country, $actual);
+            self::assertContains($country, $actual);
         }
     }
 
-    /**
-     * @param float $expected
-     * @param float $actual
-     * @param float $delta
-     *
-     * @return void
-     */
     public static function assertRate(float $expected, float $actual, float $delta = 10): void
     {
         $min = $expected - ($expected / 100 * $delta);
         $max = $expected + ($expected / 100 * $delta);
 
-        static::assertTrue(
+        self::assertTrue(
             $actual >= $min && $actual <= $max,
             "Expected rate is not in range of $min - $max (actual $actual)"
         );

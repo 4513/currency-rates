@@ -7,6 +7,7 @@ namespace MiBo\Currency\Rates\Exchangers;
 use MiBo\Currency\Rates\Contracts\ExchangerInterface;
 use MiBo\Currency\Rates\Exceptions\ExchangeRateNotAvailableException;
 use MiBo\Currency\Rates\Traits\ExchangerHelper;
+use function count;
 
 /**
  * Class CNB
@@ -72,23 +73,8 @@ class CNB implements ExchangerInterface
 
     /**
      * @inheritDoc
-     *
-     * @param array<string, array{amount?: int, rate: float}> $rates
      */
-    protected function getFor(array $rates, string $currency, string $fromCurrency): float
-    {
-        $rate = ($rates[$currency]["amount"] ?? 1) / $rates[$currency]["rate"];
-
-        if ($fromCurrency === $this->getDefaultCurrencyCode()) {
-            return $rate;
-        }
-
-        return $rate / (($rates[$fromCurrency]["amount"] ?? 1) * $rates[$fromCurrency]["rate"]);
-    }
-
-    /**
-     * @inheritDoc
-     */
+    // @phpcs:ignore SlevomatCodingStandard.Complexity.Cognitive.ComplexityTooHigh
     public function getExchangeRates(): array
     {
         $content = file_get_contents(static::URL);
@@ -123,5 +109,21 @@ class CNB implements ExchangerInterface
         }
 
         return $rates;
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @param array<string, array{amount?: int, rate: float}> $rates
+     */
+    protected function getFor(array $rates, string $currency, string $fromCurrency): float
+    {
+        $rate = ($rates[$currency]["amount"] ?? 1) / $rates[$currency]["rate"];
+
+        if ($fromCurrency === $this->getDefaultCurrencyCode()) {
+            return $rate;
+        }
+
+        return $rate / (($rates[$fromCurrency]["amount"] ?? 1) * $rates[$fromCurrency]["rate"]);
     }
 }

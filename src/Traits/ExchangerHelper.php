@@ -42,6 +42,7 @@ trait ExchangerHelper
     /**
      * @inheritDoc
      */
+    // @phpcs:ignore SlevomatCodingStandard.Complexity.Cognitive.ComplexityTooHigh
     public function getRateFor(
         CurrencyInterface|string $currency,
         CurrencyInterface|string|null $fromCurrency = null
@@ -49,9 +50,9 @@ trait ExchangerHelper
     {
         $rates        = $this->getExchangeRates();
         $currency     = $currency instanceof CurrencyInterface ? $currency->getAlphabeticalCode() : $currency;
-        $fromCurrency = $fromCurrency instanceof CurrencyInterface ?
-            $fromCurrency->getAlphabeticalCode() :
-            $fromCurrency;
+        $fromCurrency = $fromCurrency instanceof CurrencyInterface
+            ? $fromCurrency->getAlphabeticalCode()
+            : $fromCurrency;
 
         if ($currency === $fromCurrency || ($currency === $this->getDefaultCurrencyCode() && $fromCurrency === null)) {
             return 1;
