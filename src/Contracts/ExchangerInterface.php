@@ -60,7 +60,7 @@ interface ExchangerInterface
     /**
      * Lists all available currencies for the Exchanger.
      *
-     * @return string[] Available currencies.
+     * @return array<string> Available currencies.
      */
     public function getAvailableCurrencies(): array;
 }

@@ -4,22 +4,22 @@ declare(strict_types=1);
 
 namespace MiBo\Currency\Rates\Tests;
 
-use MiBo\Currency\Rates\Exchangers\ECB;
+use MiBo\Currency\Rates\Exchangers\BoE;
 
 /**
- * Class ECBTest
+ * Class BoETest
  *
  * @package MiBo\Currency\Rates\Tests
  *
  * @author Michal Boris <michal.boris27@gmail.com>
  *
- * @since 0.1
+ * @since 1.1.0
  *
  * @no-named-arguments Parameter names are not covered by the backward compatibility promise.
  *
- * @coversDefaultClass \MiBo\Currency\Rates\Exchangers\ECB
+ * @coversDefaultClass \MiBo\Currency\Rates\Exchangers\BoE
  */
-final class ECBTest extends ExchangerTestCase
+final class BoETest extends ExchangerTestCase
 {
     /**
      * @medium
@@ -29,19 +29,20 @@ final class ECBTest extends ExchangerTestCase
      * @covers ::getRateFor
      * @covers ::getFor
      * @covers ::getDefaultCurrencyCode
+     * @covers ::composeUlr
+     * @covers ::csvContentIntoArray
      *
      * @return void
      */
     public function test(): void
     {
-        $class = new ECB();
+        $class = new BoE();
 
         $this->assertAvailableCountries(
             [
                 "CZK",
                 "EUR",
                 "AUD",
-                "BRL",
                 "USD",
                 "CAD",
                 "SEK",
@@ -52,7 +53,7 @@ final class ECBTest extends ExchangerTestCase
             $class->getAvailableCurrencies()
         );
 
-        $this->assertRate(1, $class->getRateFor("EUR"));
-        $this->assertRate(25, $class->getRateFor("CZK"));
+        $this->assertRate(1.16, $class->getRateFor("EUR"));
+        $this->assertRate(28.22, $class->getRateFor('CZK'));
     }
 }
