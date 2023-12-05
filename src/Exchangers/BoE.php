@@ -90,7 +90,7 @@ class BoE implements ExchangerInterface
         $currentTime = Carbon::now()->isWeekend() ? Carbon::now()->previous(CarbonInterface::FRIDAY) : Carbon::now();
 
         /** @phpstan-var \Carbon\Carbon $timeFrom */
-        $timeFrom   = $currentTime->copy()->subDays(3);
+        $timeFrom   = $currentTime->copy()->subDays(5);
         $queries    = [
             'csv.x'      => 'yes',
             'CSVF'       => 'CN',
