@@ -17,6 +17,7 @@ The library comes with `\MiBo\Currency\Rates\ExchangerInterface` interface, whic
 The library comes with a few implementations of the Exchangers:
 * ECB - European Central Bank
 * CNB - Czech National Bank
+* BoE - Bank of England
 * *more to come...*
 
 All implementations load the rates from publicly available resources. All resources are located on official
