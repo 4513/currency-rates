@@ -74,7 +74,6 @@ class ECB implements ExchangerInterface
             throw new ExchangeRateNotAvailableException();
         }
 
-        // @phpstan-ignore-next-line XMLReader::$name problem? Seems like a bug in PHPStan.
         while ($xmlReader->read() && $xmlReader->name !== "Cube") {
             continue;
         }
