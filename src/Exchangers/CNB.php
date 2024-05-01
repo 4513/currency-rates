@@ -124,6 +124,6 @@ class CNB implements ExchangerInterface
             return $rate;
         }
 
-        return (($rates[$fromCurrency]["amount"] ?? 1) * $rates[$fromCurrency]["rate"]) / $rate;
+        return ($rates[$fromCurrency]["amount"] ?? 1) * $rates[$fromCurrency]["rate"] / $rate;
     }
 }
