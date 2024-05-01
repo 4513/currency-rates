@@ -115,6 +115,6 @@ class ECB implements ExchangerInterface
             return $rate;
         }
 
-        return 1 / $rates[$fromCurrency]["rate"] * $rate;
+        return $rates[$fromCurrency]["rate"] * $rate;
     }
 }
