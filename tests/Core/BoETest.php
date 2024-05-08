@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace MiBo\Currency\Rates\Tests;
 
 use MiBo\Currency\Rates\Exchangers\BoE;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Medium;
 
 /**
  * Class BoETest
@@ -16,29 +18,16 @@ use MiBo\Currency\Rates\Exchangers\BoE;
  * @since 1.1.0
  *
  * @no-named-arguments Parameter names are not covered by the backward compatibility promise.
- *
- * @coversDefaultClass \MiBo\Currency\Rates\Exchangers\BoE
  */
+#[CoversClass(BoE::class)]
+#[Medium]
 final class BoETest extends ExchangerTestCase
 {
-    /**
-     * @medium
-     *
-     * @covers ::getExchangeRates
-     * @covers ::getAvailableCurrencies
-     * @covers ::getRateFor
-     * @covers ::getFor
-     * @covers ::getDefaultCurrencyCode
-     * @covers ::composeUlr
-     * @covers ::csvContentIntoArray
-     *
-     * @return void
-     */
     public function test(): void
     {
         $class = new BoE();
 
-        $this->assertAvailableCountries(
+        self::assertAvailableCountries(
             [
                 "CZK",
                 "EUR",
@@ -53,7 +42,7 @@ final class BoETest extends ExchangerTestCase
             $class->getAvailableCurrencies()
         );
 
-        $this->assertRate(1.16, $class->getRateFor("EUR"));
-        $this->assertRate(28.22, $class->getRateFor('CZK'));
+        self::assertRate(1.16, $class->getRateFor("EUR"));
+        self::assertRate(28.22, $class->getRateFor('CZK'));
     }
 }

@@ -201,7 +201,6 @@ class BoE implements ExchangerInterface
             $rows
         );
 
-        /** @phpstan-var \Carbon\Carbon|null $latestDate */
         $latestDate = null;
 
         /** @var array{date: \Carbon\Carbon, value: float, currency: string} $row */
@@ -212,6 +211,8 @@ class BoE implements ExchangerInterface
                 break;
             }
         }
+
+        $latestDate ??= Carbon::now();
 
         /** @phpstan-var array<array{date: \Carbon\Carbon, currency: string, value: float}> $rows */
         array_filter($rows, static fn (array $row): bool => $row['date']->isSameDay($latestDate));
