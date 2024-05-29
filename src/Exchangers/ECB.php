@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace MiBo\Currency\Rates\Exchangers;
 
+use CompileError;
 use MiBo\Currency\Rates\Contracts\ExchangerInterface;
 use MiBo\Currency\Rates\Exceptions\ExchangeRateNotAvailableException;
 use MiBo\Currency\Rates\Traits\ExchangerHelper;
@@ -67,6 +68,10 @@ class ECB implements ExchangerInterface
     // @phpcs:ignore SlevomatCodingStandard.Complexity.Cognitive.ComplexityTooHigh
     public function getExchangeRates(): array
     {
+        if (!extension_loaded('xmlreader')) {
+            throw new CompileError("The 'xmlreader' extension is required to use the ECB exchanger.");
+        }
+
         $rates     = [];
         $xmlReader = XMLReader::open(static::URL);
 
