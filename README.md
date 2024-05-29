@@ -15,9 +15,10 @@ The library comes with `\MiBo\Currency\Rates\ExchangerInterface` interface, whic
   currency codes.
 
 The library comes with a few implementations of the Exchangers:
-* ECB - European Central Bank
-* CNB - Czech National Bank
-* BoE - Bank of England
+* ECB - European Central Bank (since 1.0)
+* CNB - Czech National Bank (since 1.0)
+* BoE - Bank of England (since 1.1)
+* OXR - Open Exchange Rates (since 1.2) - Experimental
 * *more to come...*
 
 All implementations load the rates from publicly available resources. All resources are located on official
