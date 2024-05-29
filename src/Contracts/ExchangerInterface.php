@@ -22,7 +22,7 @@ interface ExchangerInterface
     /**
      * Currency code that is used as a default currency for the Exchanger. (ISO-4217)
      *
-     * @return string 3 capitalized letters.
+     * @return non-empty-string 3 capitalized letters.
      */
     public function getDefaultCurrencyCode(): string;
 

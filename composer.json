@@ -56,7 +56,8 @@
         "slevomat/coding-standard": "^8.15",
         "phpstan/extension-installer": "^1.3",
         "php-parallel-lint/php-parallel-lint": "^1.4",
-        "phpstan/phpstan-deprecation-rules": "^1.1"
+        "phpstan/phpstan-deprecation-rules": "^1.1",
+        "ext-curl": "*"
     },
     "config": {
         "platform-check": true,
@@ -65,5 +66,8 @@
             "phpstan/extension-installer": true,
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
+    },
+    "suggest": {
+        "ext-curl": "For fetching currency rates from CF"
     }
 }
