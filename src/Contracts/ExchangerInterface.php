@@ -63,4 +63,20 @@ interface ExchangerInterface
      * @return array<string> Available currencies.
      */
     public function getAvailableCurrencies(): array;
+
+//    /**
+//     * Exchanges the given amount to the new currency.
+//     *
+//     * @param float $amount Input amount to be exchanged.
+//     * @param string|\MiBo\Currencies\CurrencyInterface $toCurrency Result currency.
+//     * @param string|\MiBo\Currencies\CurrencyInterface|null $fromCurrency Input currency. If no currency
+//     *     is provided, the exchanger's default currency is used.
+//     *
+//     * @return float Exchanged amount.
+//     */
+//    public function exchange(
+//        float $amount,
+//        string|CurrencyInterface $toCurrency,
+//        string|CurrencyInterface|null $fromCurrency = null
+//    ): float;
 }

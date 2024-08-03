@@ -18,7 +18,10 @@
         "Package",
         "Money",
         "Bank",
-        "Banks"
+        "Banks",
+        "Currency Freaks",
+        "Open Exchange Rates",
+        "OXR"
     ],
     "license": "MIT",
     "authors": [
