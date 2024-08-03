@@ -68,7 +68,7 @@
         }
     },
     "suggest": {
-        "ext-curl": "For fetching currency rates from OXR",
+        "ext-curl": "For fetching currency rates from OXR or CF",
         "ext-xmlreader": "For fetching currency rates from CNB"
     }
 }
